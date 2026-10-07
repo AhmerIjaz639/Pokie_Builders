@@ -1,107 +1,128 @@
-# NovaWorks AI Project Manager
+<div align="center">
 
-**THE INFINITY HACK '26**
+#  NovaWorks AI Project Manager
 
-## Project Description
+### From meeting transcript to a fully planned project, in one click.
 
-NovaWorks is a meeting-to-execution project management CRM for NovaWorks Technologies.
-It uses AI to convert meeting transcripts into structured projects and tasks, including assignments, deadlines, and estimated hours.
-The application also provides role-based dashboards for administrators, project managers, and developer agents.
+** Built for THE INFINITY HACK '26 · Team Pokie Builders**
 
-## Features
+![React](https://img.shields.io/badge/React_19-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white)
+![Gemini](https://img.shields.io/badge/Google_Gemini-8E75B2?style=for-the-badge&logo=googlegemini&logoColor=white)
 
-- Login and logout with pre-seeded demo accounts
-- Admin, Manager, and Agent roles
-- Server-side role-based access control
-- Team directory
-- Project management
-- Task management
-- AI transcript-to-project/task generation
-- Task deadlines and estimated hours
-- Persistent saved data across restarts and refreshes
+[ Overview](#-overview) · [ Features](#-features) · [ Quick Start](#-quick-start) · [ Demo Accounts](#-demo-accounts) · [ Try the AI Flow](#-try-the-ai-flow-in-2-minutes) · [🎬 Demo Video](#-demo-video)
 
-## Tech Stack
+</div>
 
-- **Frontend:** React 19, TypeScript, Vite, Tailwind CSS, Lucide React, Motion
-- **Backend:** Node.js, Express.js, TypeScript, `tsx`
-- **AI:** Google GenAI SDK with Gemini
-- **Authentication:** HTTP-only session cookies and PBKDF2 password hashing
-- **Database:** Persistent local JSON file with atomic writes
+---
 
-## Project Structure
+## ✨ Overview
 
-```text
-.
-├── data/
-│   └── novaworks.json       # Local persistent database
-├── server/
-│   ├── ai.ts                # Gemini transcript processing
-│   ├── crypto.ts            # Password hashing and verification
-│   ├── db.ts                # JSON database operations
-│   └── seedData.ts          # Demo users and seed data
-├── src/
-│   ├── components/          # React UI components
-│   ├── lib/api.ts           # Frontend API client
-│   ├── lib/transcriptSamples.ts
-│   │                          # Supplied and modified demo transcripts
-│   ├── types/               # Shared TypeScript types
-│   ├── App.tsx              # Main application component
-│   └── main.tsx             # Frontend entry point
-├── server.ts                # Express/Vite server entry point
-├── package.json             # Scripts and dependencies
-└── .env.example             # Environment variable template
+Meetings produce decisions. Then everyone forgets who was supposed to do what.
+
+**NovaWorks** is a meeting-to-execution project management CRM built for **NovaWorks Technologies**. Paste in a meeting transcript, and AI turns it into structured **projects** and **tasks**, complete with **assignees, deadlines, and estimated hours**.
+
+Everyone gets a dashboard that matches their role: **Admins** see everything, **Managers** see their projects, and **Agents** see their own tasks.
+
+```mermaid
+flowchart LR
+    A[" Meeting Transcript"] --> B[" Gemini AI"]
+    B --> C[" Projects"]
+    C --> D[" Tasks<br/>assignee · deadline · hours"]
+    D --> E[" Role-based Dashboards"]
 ```
 
-## Installation & Setup
+---
 
-### Prerequisites
+##  Features
 
-- Node.js 20 or later
-- npm
-- A Google Gemini API key for AI transcript processing
+| | Feature | What it does |
+|---|---|---|
+|  | **AI Transcript → Projects & Tasks** | Gemini reads a meeting transcript and generates projects and tasks automatically |
+|  | **Deadlines & Estimated Hours** | Every task comes with a due date and a time estimate |
+|  | **Secure Login** | Pre-seeded demo accounts, HTTP-only session cookies, PBKDF2 password hashing |
+|  | **Role-Based Access Control** | Admin, Manager, and Agent roles, enforced on the **server**, not just hidden in the UI |
+|  | **Team Directory** | See everyone on the team in one place |
+|  | **Project & Task Management** | Browse projects and drill into their tasks |
+|  | **Persistent Data** | Your data survives refreshes and restarts (local JSON database with atomic writes) |
 
-### Install dependencies
+---
 
-From the project directory, run:
+##  Who Sees What?
 
-```powershell
+| Role | Projects | Tasks | Team Directory | Create from Transcript |
+|---|:---:|:---:|:---:|:---:|
+|  **Admin** | All | All | ✅ | ✅ |
+|  **Manager** | Only assigned | Tasks in those projects | ❌ | ❌ |
+|  **Agent** | Related project info | Only assigned tasks | ❌ | ❌ |
+
+>  Access rules are enforced by the backend, so they can't be bypassed from the browser.
+
+---
+
+##  Tech Stack
+
+| Layer | Technology |
+|---|---|
+|  **Frontend** | React 19, TypeScript, Vite, Tailwind CSS, Lucide React, Motion |
+|  **Backend** | Node.js, Express.js, TypeScript, `tsx` |
+|  **AI** | Google GenAI SDK with Gemini |
+|  **Auth** | HTTP-only session cookies + PBKDF2 password hashing |
+|  **Database** | Persistent local JSON file with atomic writes |
+
+---
+
+##  Quick Start
+
+###  Prerequisites
+
+- **Node.js 20+** and **npm**
+- A **Google Gemini API key** (needed for the AI transcript feature)
+
+###  Install dependencies
+
+```bash
 npm install
 ```
 
-### Create the environment file
+###  Set up your environment file
 
-Windows PowerShell:
-
+**Windows (PowerShell):**
 ```powershell
 Copy-Item .env.example .env
 ```
 
-Open `.env` and add your own Gemini API key, as described below.
+**macOS / Linux:**
+```bash
+cp .env.example .env
+```
 
-### Start the development server
+Then open `.env` and paste in your own Gemini API key.
 
-```powershell
+###  Run the app
+
+```bash
 npm run dev
 ```
 
-Open the application at <http://localhost:3000>.
+Open **http://localhost:3000** 🎉
 
-### Build and start the application
+<details>
+<summary><b> Other useful commands</b></summary>
 
-```powershell
-npm run build
-npm start
+```bash
+npm run build   # Build for production
+npm start       # Start the production build
+npm run lint    # Type-check the project
 ```
 
-### Type-check the project
+</details>
 
-```powershell
-npm run lint
-```
-
-## Environment Variables
-
-The project includes an [.env.example](./.env.example) template. Copy it to `.env` and replace the placeholder values.
+###  Environment Variables
 
 ```env
 GEMINI_API_KEY=your-gemini-api-key
@@ -109,108 +130,133 @@ PORT=3000
 NODE_ENV=development
 ```
 
-- `GEMINI_API_KEY` is required for AI transcript processing.
-- `PORT` is optional and defaults to `3000`.
-- `NODE_ENV` controls the runtime mode; use `development` locally.
-- `APP_URL` is present in the template for hosted configuration, but no hosted deployment is currently configured.
+| Variable | Required | Description |
+|---|:---:|---|
+| `GEMINI_API_KEY` |  | Powers the AI transcript processing |
+| `PORT` |  | Server port (defaults to `3000`) |
+| `NODE_ENV` |  | Use `development` locally |
+| `APP_URL` |  | Reserved for hosted setups (no hosted deployment is configured yet) |
 
-Never commit `.env` or expose a real API key. Use placeholder values in `.env.example`.
+>  **Never commit your `.env` file or share a real API key.**
 
-## Demo Accounts
+---
 
-All supplied fictional demo accounts use:
+##  Demo Accounts
 
-```text
+All demo accounts are fictional and share one password:
+
+```
 Password: Demo123!
 ```
 
 | Name | Email | Role |
 |---|---|---|
-| Admin | `admin@novaworks.example` | Administrator |
-| Ayesha Khan | `ayesha@novaworks.example` | Manager |
-| Bilal Ahmed | `bilal@novaworks.example` | Manager |
-| Hina Malik | `hina@novaworks.example` | Manager |
-| Ali Raza | `ali@novaworks.example` | Agent |
-| Hamza Shah | `hamza@novaworks.example` | Agent |
-| Sara Noor | `sara@novaworks.example` | Agent |
-| Usman Tariq | `usman@novaworks.example` | Agent |
-| Zain Abbas | `zain@novaworks.example` | Agent |
-| Maryam Asif | `maryam@novaworks.example` | Agent |
+| Admin | `admin@novaworks.example` |  Administrator |
+| Ayesha Khan | `ayesha@novaworks.example` |  Manager |
+| Bilal Ahmed | `bilal@novaworks.example` |  Manager |
+| Hina Malik | `hina@novaworks.example` |  Manager |
+| Ali Raza | `ali@novaworks.example` |  Agent |
+| Hamza Shah | `hamza@novaworks.example` |  Agent |
+| Sara Noor | `sara@novaworks.example` |  Agent |
+| Usman Tariq | `usman@novaworks.example` |  Agent |
+| Zain Abbas | `zain@novaworks.example` |  Agent |
+| Maryam Asif | `maryam@novaworks.example` |  Agent |
 
-The accounts are seeded automatically when the application first starts.
+Accounts are created automatically the first time the app starts.
 
-## How to Test the AI Flow
+---
 
-1. Start the server with `npm run dev` and open <http://localhost:3000>.
-2. Log in as Admin:
-   - Email: `admin@novaworks.example`
-   - Password: `Demo123!`
-3. Open **Create from Transcript**.
-4. Select **1. Official Supplied Transcript**, or paste the supplied meeting transcript from the application.
-5. Click **Create from Transcript** to run Gemini processing.
-6. Verify that the application creates **3 projects and 12 tasks**.
-7. Open the projects and inspect their task assignments, deadlines, and estimated hours.
-8. Switch between the Manager and Agent demo accounts to verify access restrictions.
-9. Refresh the browser and confirm that the saved data remains available.
+##  Try the AI Flow in 2 Minutes
 
-The application also includes a **Modified Transcript** preset for testing that updated transcript values are processed dynamically.
+1. Run `npm run dev` and open **http://localhost:3000**
+2. Log in as **Admin** (`admin@novaworks.example` / `Demo123!`)
+3. Open **Create from Transcript**
+4. Choose **1. Official Supplied Transcript** (or paste your own)
+5. Click **Create from Transcript** and let Gemini work ✨
+6. Open the new projects and inspect assignments, deadlines, and estimated hours
+7. Log in as a **Manager** and an **Agent** to see how access changes
+8. Refresh the page and confirm everything is still saved 💾
 
-## Role-Based Access
+> 💡 There's also a **Modified Transcript** preset, which proves the AI reacts to changed input rather than returning canned results.
 
-- **Admin:** Can view all projects and tasks, view the team directory, and create projects/tasks from transcripts.
-- **Manager:** Can view only assigned projects and the tasks belonging to those projects.
-- **Agent:** Can view only assigned tasks and the related project information.
+###  Expected Result
 
-Authorization is enforced by the backend, not only by hiding frontend controls.
+The official transcript should produce **3 projects** and **12 tasks**:
 
-## Expected Demo Result
+| Project | Tasks |
+|---|:---:|
+|  UrbanCart Website | 4 |
+|  QuickServe Mobile App | 4 |
+|  HelpDeskPro AI Assistant | 4 |
 
-The official supplied transcript should produce:
+---
 
-- **3 projects**
-- **12 tasks**
-- **UrbanCart Website:** 4 tasks
-- **QuickServe Mobile App:** 4 tasks
-- **HelpDeskPro AI Assistant:** 4 tasks
+## 🗂️ Project Structure
 
-The saved database file is [data/novaworks.json](./data/novaworks.json).
+```
+.
+├── data/
+│   └── novaworks.json        # Local persistent database
+├── server/
+│   ├── ai.ts                 # Gemini transcript processing
+│   ├── crypto.ts             # Password hashing & verification
+│   ├── db.ts                 # JSON database operations
+│   └── seedData.ts           # Demo users & seed data
+├── src/
+│   ├── components/           # React UI components
+│   ├── lib/
+│   │   ├── api.ts            # Frontend API client
+│   │   └── transcriptSamples.ts   # Official & modified demo transcripts
+│   ├── types/                # Shared TypeScript types
+│   ├── App.tsx               # Main application component
+│   └── main.tsx              # Frontend entry point
+├── server.ts                 # Express + Vite server entry point
+├── package.json              # Scripts & dependencies
+└── .env.example              # Environment variable template
+```
 
-## Deployment
+---
 
-No live deployment is currently configured. This submission runs as a local demo at:
+##  Known Limitations
 
-<http://localhost:3000>
+These are intentionally outside the challenge scope:
 
-The project uses a local JSON database stored in `data/novaworks.json`; no hosted database provider is configured.
-
-## Demo Video
-
-Demo video link: **TODO — add link before submission**
-
-## Known Limitations
-
-The following features are intentionally outside the challenge scope:
-
-- User signup and registration
-- Forgot password and password reset
-- Cost calculation and invoicing
-- Progress monitoring and timesheets
+- Sign up / registration
+- Forgot password & password reset
+- Cost calculation & invoicing
+- Progress monitoring & timesheets
 - Real-time notifications
-- Production-scale multi-user database infrastructure
+- Production-scale, multi-user database infrastructure
 
-## Team
+---
 
-The project currently contains a verified seeded team directory with the following members:
+##  Deployment
 
-- Admin
-- Ayesha Khan
-- Bilal Ahmed
-- Hina Malik
-- Ali Raza
-- Hamza Shah
-- Sara Noor
-- Usman Tariq
-- Zain Abbas
-- Maryam Asif
+No live deployment is configured. This submission runs as a local demo at **http://localhost:3000** and stores data in `data/novaworks.json`. No hosted database is used.
 
-**Team member credits:** TODO — add the submitting team members' names before final submission.
+---
+
+##  Demo Video
+
+> https://drive.google.com/drive/folders/1CtcwIEHagLc1E7pFcn6JdfqNiB8SiCuz
+
+---
+
+## 🤝 Team
+
+**Team Pokie Builders**
+
+> Taha Nadeem (Team Leader)
+> Waqar Imran
+> Ahad Ata
+> Ahmer Ijaz 
+
+<div align="center">
+
+---
+
+Made with  ❤️ for **THE INFINITY HACK '26**
+
+⭐ If you like this project, give it a star!
+
+</div>
