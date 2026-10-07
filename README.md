@@ -1,100 +1,107 @@
-<<<<<<< HEAD
 # NovaWorks AI Project Manager
 
-**Meeting-to-Execution Project Management System**  
-Built for **THE INFINITY HACK '26** by **NovaWorks Technologies, Lahore, Pakistan**.
+**THE INFINITY HACK '26**
 
-NovaWorks converts client meeting transcripts into structured projects and tasks. The administrator submits a transcript, Gemini extracts the final approved requirements, and the application assigns projects and tasks to the existing team while enforcing dates, estimated hours, and role-based access.
+## Project Description
 
-## Contents
-
-- [Features](#features)
-- [Technology](#technology)
-- [Requirements](#requirements)
-- [Installation](#installation)
-- [Environment configuration](#environment-configuration)
-- [Run in development](#run-in-development)
-- [Build and run production output](#build-and-run-production-output)
-- [Demo accounts](#demo-accounts)
-- [Recommended demonstration](#recommended-demonstration)
-- [Project structure](#project-structure)
-- [Troubleshooting](#troubleshooting)
-- [Known limitations](#known-limitations)
+NovaWorks is a meeting-to-execution project management CRM for NovaWorks Technologies.
+It uses AI to convert meeting transcripts into structured projects and tasks, including assignments, deadlines, and estimated hours.
+The application also provides role-based dashboards for administrators, project managers, and developer agents.
 
 ## Features
 
-- Secure login with pre-seeded demo accounts.
-- Role-based access control enforced in both the frontend and backend.
-- Admin-only transcript-to-project/task creation using Gemini.
-- Structured extraction of approved scope, assignments, deadlines, and estimated hours.
-- Persistent JSON database stored in `data/novaworks.json`.
-- Atomic all-or-nothing writes: invalid transcript results do not partially save.
-- Manager view restricted to assigned projects.
-- Developer view restricted to assigned tasks.
-- Read-only team directory.
-- Duplicate-submit protection and loading states.
-- Persistent sessions and project data across browser refreshes.
+- Login and logout with pre-seeded demo accounts
+- Admin, Manager, and Agent roles
+- Server-side role-based access control
+- Team directory
+- Project management
+- Task management
+- AI transcript-to-project/task generation
+- Task deadlines and estimated hours
+- Persistent saved data across restarts and refreshes
 
-### Roles
+## Tech Stack
 
-| Role | Access |
-|---|---|
-| Administrator (`ADMIN`) | All projects, team directory, and transcript creation |
-| Project Manager (`MANAGER`) | Only projects assigned to that manager |
-| Developer Agent (`AGENT`) | Only tasks assigned to that developer |
-
-## Technology
-
-- **Frontend:** React 19, TypeScript, Tailwind CSS, Lucide React
-- **Backend:** Express.js with Vite middleware
-- **Database:** Persistent JSON file with atomic transactions
-- **Authentication:** HTTP-only session cookie and PBKDF2 password hashing
+- **Frontend:** React 19, TypeScript, Vite, Tailwind CSS, Lucide React, Motion
+- **Backend:** Node.js, Express.js, TypeScript, `tsx`
 - **AI:** Google GenAI SDK with Gemini
-- **Runtime:** Node.js
+- **Authentication:** HTTP-only session cookies and PBKDF2 password hashing
+- **Database:** Persistent local JSON file with atomic writes
 
-## Requirements
+## Project Structure
 
-Install the following before starting:
-
-- Node.js 20 or later
-- npm 10 or later
-- A Google Gemini API key for transcript conversion
-
-Check your installed versions:
-
-```powershell
-node --version
-npm --version
+```text
+.
+├── data/
+│   └── novaworks.json       # Local persistent database
+├── server/
+│   ├── ai.ts                # Gemini transcript processing
+│   ├── crypto.ts            # Password hashing and verification
+│   ├── db.ts                # JSON database operations
+│   └── seedData.ts          # Demo users and seed data
+├── src/
+│   ├── components/          # React UI components
+│   ├── lib/api.ts           # Frontend API client
+│   ├── lib/transcriptSamples.ts
+│   │                          # Supplied and modified demo transcripts
+│   ├── types/               # Shared TypeScript types
+│   ├── App.tsx              # Main application component
+│   └── main.tsx             # Frontend entry point
+├── server.ts                # Express/Vite server entry point
+├── package.json             # Scripts and dependencies
+└── .env.example             # Environment variable template
 ```
 
-## Installation
+## Installation & Setup
 
-Open PowerShell or a terminal in the project folder:
+### Prerequisites
+
+- Node.js 20 or later
+- npm
+- A Google Gemini API key for AI transcript processing
+
+### Install dependencies
+
+From the project directory, run:
 
 ```powershell
-cd "C:\Users\ARHAM IJAZ\Desktop\novaworks-ai-project-manager"
 npm install
 ```
 
-## Environment configuration
+### Create the environment file
 
-Create a local `.env` file from the supplied template:
-
-### Windows PowerShell
+Windows PowerShell:
 
 ```powershell
 Copy-Item .env.example .env
-notepad .env
 ```
 
-### macOS/Linux
+Open `.env` and add your own Gemini API key, as described below.
 
-```bash
-cp .env.example .env
-nano .env
+### Start the development server
+
+```powershell
+npm run dev
 ```
 
-Set the values below in `.env`:
+Open the application at <http://localhost:3000>.
+
+### Build and start the application
+
+```powershell
+npm run build
+npm start
+```
+
+### Type-check the project
+
+```powershell
+npm run lint
+```
+
+## Environment Variables
+
+The project includes an [.env.example](./.env.example) template. Copy it to `.env` and replace the placeholder values.
 
 ```env
 GEMINI_API_KEY=your-gemini-api-key
@@ -102,193 +109,108 @@ PORT=3000
 NODE_ENV=development
 ```
 
-Replace `your-gemini-api-key` with a valid key from Google AI Studio. Never commit `.env` or publish the API key. The committed `.env.example` must contain only placeholder values.
+- `GEMINI_API_KEY` is required for AI transcript processing.
+- `PORT` is optional and defaults to `3000`.
+- `NODE_ENV` controls the runtime mode; use `development` locally.
+- `APP_URL` is present in the template for hosted configuration, but no hosted deployment is currently configured.
 
-## Run in development
+Never commit `.env` or expose a real API key. Use placeholder values in `.env.example`.
 
-Start the full application server:
+## Demo Accounts
 
-```powershell
-npm run dev
+All supplied fictional demo accounts use:
+
+```text
+Password: Demo123!
 ```
 
-When the server starts, open:
+| Name | Email | Role |
+|---|---|---|
+| Admin | `admin@novaworks.example` | Administrator |
+| Ayesha Khan | `ayesha@novaworks.example` | Manager |
+| Bilal Ahmed | `bilal@novaworks.example` | Manager |
+| Hina Malik | `hina@novaworks.example` | Manager |
+| Ali Raza | `ali@novaworks.example` | Agent |
+| Hamza Shah | `hamza@novaworks.example` | Agent |
+| Sara Noor | `sara@novaworks.example` | Agent |
+| Usman Tariq | `usman@novaworks.example` | Agent |
+| Zain Abbas | `zain@novaworks.example` | Agent |
+| Maryam Asif | `maryam@novaworks.example` | Agent |
+
+The accounts are seeded automatically when the application first starts.
+
+## How to Test the AI Flow
+
+1. Start the server with `npm run dev` and open <http://localhost:3000>.
+2. Log in as Admin:
+   - Email: `admin@novaworks.example`
+   - Password: `Demo123!`
+3. Open **Create from Transcript**.
+4. Select **1. Official Supplied Transcript**, or paste the supplied meeting transcript from the application.
+5. Click **Create from Transcript** to run Gemini processing.
+6. Verify that the application creates **3 projects and 12 tasks**.
+7. Open the projects and inspect their task assignments, deadlines, and estimated hours.
+8. Switch between the Manager and Agent demo accounts to verify access restrictions.
+9. Refresh the browser and confirm that the saved data remains available.
+
+The application also includes a **Modified Transcript** preset for testing that updated transcript values are processed dynamically.
+
+## Role-Based Access
+
+- **Admin:** Can view all projects and tasks, view the team directory, and create projects/tasks from transcripts.
+- **Manager:** Can view only assigned projects and the tasks belonging to those projects.
+- **Agent:** Can view only assigned tasks and the related project information.
+
+Authorization is enforced by the backend, not only by hiding frontend controls.
+
+## Expected Demo Result
+
+The official supplied transcript should produce:
+
+- **3 projects**
+- **12 tasks**
+- **UrbanCart Website:** 4 tasks
+- **QuickServe Mobile App:** 4 tasks
+- **HelpDeskPro AI Assistant:** 4 tasks
+
+The saved database file is [data/novaworks.json](./data/novaworks.json).
+
+## Deployment
+
+No live deployment is currently configured. This submission runs as a local demo at:
 
 <http://localhost:3000>
 
-The development command runs the Express server and serves the Vite React application. Keep the terminal open while using the application. Press `Ctrl+C` to stop it.
+The project uses a local JSON database stored in `data/novaworks.json`; no hosted database provider is configured.
 
-## Build and run production output
+## Demo Video
 
-Create the frontend production build:
+Demo video link: **TODO — add link before submission**
 
-```powershell
-npm run build
-```
+## Known Limitations
 
-Start the application server:
+The following features are intentionally outside the challenge scope:
 
-```powershell
-npm start
-```
+- User signup and registration
+- Forgot password and password reset
+- Cost calculation and invoicing
+- Progress monitoring and timesheets
+- Real-time notifications
+- Production-scale multi-user database infrastructure
 
-Then open <http://localhost:3000>.
+## Team
 
-To run the TypeScript type check:
+The project currently contains a verified seeded team directory with the following members:
 
-```powershell
-npm run lint
-```
+- Admin
+- Ayesha Khan
+- Bilal Ahmed
+- Hina Malik
+- Ali Raza
+- Hamza Shah
+- Sara Noor
+- Usman Tariq
+- Zain Abbas
+- Maryam Asif
 
-## Demo accounts
-
-All demo accounts use this password:
-
-```text
-Demo123!
-```
-
-| Reference | Name | Email | Role |
-|---|---|---|---|
-| ADMIN | Admin | `admin@novaworks.example` | Administrator |
-| PM01 | Ayesha Khan | `ayesha@novaworks.example` | Manager |
-| PM02 | Bilal Ahmed | `bilal@novaworks.example` | Manager |
-| PM03 | Hina Malik | `hina@novaworks.example` | Manager |
-| DEV01 | Ali Raza | `ali@novaworks.example` | Agent |
-| DEV02 | Hamza Shah | `hamza@novaworks.example` | Agent |
-| DEV03 | Sara Noor | `sara@novaworks.example` | Agent |
-| DEV04 | Usman Tariq | `usman@novaworks.example` | Agent |
-| DEV05 | Zain Abbas | `zain@novaworks.example` | Agent |
-| DEV06 | Maryam Asif | `maryam@novaworks.example` | Agent |
-
-No registration or password reset is required. Accounts are seeded automatically when the server starts. The Admin navigation also includes a demo/seed action if the data needs to be restored.
-
-## Recommended demonstration
-
-### 1. Sign in as Admin
-
-1. Open <http://localhost:3000>.
-2. Sign in with `admin@novaworks.example`.
-3. Enter the password `Demo123!`.
-
-### 2. Review the team directory
-
-Open **Team Directory** and confirm that the ten seeded employees are displayed with their roles and specializations.
-
-### 3. Convert the official transcript
-
-1. Open **Create from Transcript**.
-2. Select **1. Official Supplied Transcript**.
-3. Click **Create from Transcript**.
-4. Confirm that the AI creates three projects and their associated tasks:
-   - UrbanCart Website
-   - QuickServe Mobile App
-   - HelpDeskPro AI Assistant
-
-The application validates deadlines, positive estimated hours, employee assignments, and project/task relationships before saving.
-
-### 4. Inspect project details
-
-Open **UrbanCart Website** and verify:
-
-- Four tasks are present.
-- Ali Raza owns the three frontend/integration tasks.
-- Hamza Shah owns the backend task.
-- The project deadline is 20 October.
-- The integration task deadline is 19 October.
-
-### 5. Verify manager access control
-
-Use the user switcher to test each manager:
-
-- **Ayesha Khan:** sees only UrbanCart Website.
-- **Bilal Ahmed:** sees only QuickServe Mobile App.
-- **Hina Malik:** sees only HelpDeskPro AI Assistant.
-
-A manager must not be able to access another manager's projects through the UI or API.
-
-### 6. Verify developer access control
-
-Switch to the following developer accounts and open **My Tasks**:
-
-- **Ali Raza:** sees only his UrbanCart tasks.
-- **Hamza Shah:** sees his assigned tasks across UrbanCart and QuickServe.
-
-### 7. Verify persistence
-
-Refresh the browser and confirm that the session, projects, and tasks remain available. The records are persisted in `data/novaworks.json`.
-
-### 8. Verify live transcript changes
-
-1. Switch back to Admin.
-2. Clear the current projects using the available reset action.
-3. Select **2. Modified Transcript**.
-4. Submit it with **Create from Transcript**.
-5. Verify that the modified QuickServe integration task reflects the changed estimate and deadline, such as 12 hours and `2026-10-23`.
-
-This confirms that transcript data is processed dynamically rather than loaded from hardcoded project results.
-
-## Project structure
-
-```text
-.
-├── data/
-│   └── novaworks.json       # Persistent local database
-├── server/
-│   ├── ai.ts                # Gemini integration
-│   ├── crypto.ts            # Password/session cryptography
-│   ├── db.ts                # JSON database operations
-│   └── seedData.ts          # Demo users and seed data
-├── src/
-│   ├── components/          # React UI components
-│   ├── lib/api.ts           # Frontend API client
-│   ├── types/               # Shared TypeScript types
-│   ├── App.tsx              # Application shell
-│   └── main.tsx             # Frontend entry point
-├── server.ts                # Express/Vite server entry point
-├── package.json              # Scripts and dependencies
-└── .env.example              # Environment variable template
-```
-
-## Troubleshooting
-
-### `npm` or `node` is not recognized
-
-Install Node.js 20 or later, restart PowerShell, and run `node --version` again.
-
-### Port 3000 is already in use
-
-Change the port in `.env`:
-
-```env
-PORT=3001
-```
-
-Then restart the server and open <http://localhost:3001>.
-
-### Transcript conversion fails
-
-Check that:
-
-1. `.env` exists in the project root.
-2. `GEMINI_API_KEY` contains a valid key.
-3. The server was restarted after changing `.env`.
-4. The machine has an active internet connection.
-
-### The application has stale demo data
-
-Use the Admin reset/seed controls in the navigation, or stop the server and make a backup before manually resetting `data/novaworks.json`. Do not delete the file unless you intend to recreate the local database.
-
-## Known limitations
-
-- Real-time WebSocket notifications are not included.
-- Timesheets, invoicing, payroll, and advanced financial reporting are outside this MVP.
-- The JSON database is intended for local demonstration and is not a production multi-user database.
-
-## Security note
-
-Keep API keys and local `.env` files private. Do not commit secrets, production credentials, or personal data to the repository.
-=======
-# Pokie_Builders
-infinity wave Hackathone 
->>>>>>> 7b088834afb2e96d5fc1aa12fbba1c7e7ea367fc
+**Team member credits:** TODO — add the submitting team members' names before final submission.
