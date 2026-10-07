@@ -1,0 +1,181 @@
+{
+  "users": [
+    {
+      "id": "ADMIN",
+      "name": "Admin",
+      "email": "admin@novaworks.example",
+      "role": "ADMIN",
+      "specialization": "Administrator",
+      "skills": [
+        "Company overview",
+        "transcript creation"
+      ],
+      "passwordSalt": "38865cb5d7c21e2c24df563fca099a5e",
+      "passwordHash": "a29b8254dc2077dfb948637cdea78e5cc7d19ca72d5410886f1ab62617fbd9abf9136ebd2573c368c552c415d09881cf363253c956bc9d85070a650c9eec7674"
+    },
+    {
+      "id": "PM01",
+      "name": "Ayesha Khan",
+      "email": "ayesha@novaworks.example",
+      "role": "MANAGER",
+      "specialization": "Manager / Web PM",
+      "skills": [
+        "Web projects",
+        "client coordination"
+      ],
+      "passwordSalt": "013d1e3f76c0737bded5c898a69718bc",
+      "passwordHash": "bed1762a14029e02502201d3eb5e16e1bdc9e161d97c9deeedf3960b29e5003aa5025dec0eff873d4903ab3273e056e943026f3d91cbf900a80fd4fce397dc17"
+    },
+    {
+      "id": "PM02",
+      "name": "Bilal Ahmed",
+      "email": "bilal@novaworks.example",
+      "role": "MANAGER",
+      "specialization": "Manager / Mobile PM",
+      "skills": [
+        "Mobile projects",
+        "delivery planning"
+      ],
+      "passwordSalt": "bf8284e45a4ae12b89810dec4262f2b6",
+      "passwordHash": "640f9f184a4bff528c6c97b2ca5a1d68339a5e2d53a2de6647c65da4e4bfc37f29ed226633777611d7e34fea94f680aa9569bd2e98f0cb7a185bd75fdf33633e"
+    },
+    {
+      "id": "PM03",
+      "name": "Hina Malik",
+      "email": "hina@novaworks.example",
+      "role": "MANAGER",
+      "specialization": "Manager / AI PM",
+      "skills": [
+        "AI projects",
+        "requirement review"
+      ],
+      "passwordSalt": "1a85233a3e8fbf83eb8206c88fa14f80",
+      "passwordHash": "3d007e37e9de13cb6a5d01eb437a22e2ec6dd8e59b935db04de82dcd6084d2c4b85a8a06d3007c8fe9dc10439e4d22d1a1dc8b617bba1e394dfe376221308586"
+    },
+    {
+      "id": "DEV01",
+      "name": "Ali Raza",
+      "email": "ali@novaworks.example",
+      "role": "AGENT",
+      "specialization": "Agent / Full-Stack",
+      "skills": [
+        "React",
+        "frontend integration"
+      ],
+      "passwordSalt": "55c7c883c619152c2bd72c6566ecb51b",
+      "passwordHash": "f1557e77e07da81f8e7b0bf7e81efa12b0a42a98579a22b8f595b96b8c7d3cda6057adc2302bbbfd55b234586e622b8b45b9fecfa3f346ae5703290d7707c34b"
+    },
+    {
+      "id": "DEV02",
+      "name": "Hamza Shah",
+      "email": "hamza@novaworks.example",
+      "role": "AGENT",
+      "specialization": "Agent / Full-Stack",
+      "skills": [
+        "Node.js",
+        "databases",
+        "APIs"
+      ],
+      "passwordSalt": "1569e0e174cbbebc320a7a9d2f75c6c9",
+      "passwordHash": "ee4b7013f1412f9d6c6233057674875326ed93ac1709ec9bb42a0d55c532c594f74303745fe711da5090c16791f6a35dfbb148d5b12bc7516f5a91e81dc21c53"
+    },
+    {
+      "id": "DEV03",
+      "name": "Sara Noor",
+      "email": "sara@novaworks.example",
+      "role": "AGENT",
+      "specialization": "Agent / App Developer",
+      "skills": [
+        "Flutter",
+        "mobile UI"
+      ],
+      "passwordSalt": "dd82a7b597b1b7ab791eed43c0df0429",
+      "passwordHash": "e66d4ed997f36cd4aa646f32428f690dd7b9dadfdc51827de002baae579a1b3abf82e1cdc99a9175bd7448d3d08d45c25c7fd1286402cafa9cf7530819aa40e4"
+    },
+    {
+      "id": "DEV04",
+      "name": "Usman Tariq",
+      "email": "usman@novaworks.example",
+      "role": "AGENT",
+      "specialization": "Agent / App Developer",
+      "skills": [
+        "Flutter",
+        "integration",
+        "testing"
+      ],
+      "passwordSalt": "a76daf7d5e4f0f40e20b8af363d92e9f",
+      "passwordHash": "7e892c8bf36689a407e298bb9c48b96c2bbfaa9d53df0158cbc8ccd8f9afc6c7ebbc69af666b4070fd4eebc4e2a4b3d6e6929dd2e413bec5a31851f168d16ae1"
+    },
+    {
+      "id": "DEV05",
+      "name": "Zain Abbas",
+      "email": "zain@novaworks.example",
+      "role": "AGENT",
+      "specialization": "Agent / AI Developer",
+      "skills": [
+        "LLMs",
+        "extraction",
+        "prompts"
+      ],
+      "passwordSalt": "cf1f9fefc7abe05b59cc73d4cc3903f0",
+      "passwordHash": "b929cf52ccb4000c968aa88ada230211d97b0aebaf737b1339a606f93f65d57ec72d36b8c9f73703c1671b57d7984d651da748587662567f3d45b794ef0683a7"
+    },
+    {
+      "id": "DEV06",
+      "name": "Maryam Asif",
+      "email": "maryam@novaworks.example",
+      "role": "AGENT",
+      "specialization": "Agent / AI Developer",
+      "skills": [
+        "Retrieval",
+        "document processing"
+      ],
+      "passwordSalt": "30b56260938666538d99eed272ef3f28",
+      "passwordHash": "859e39e497ead18341b2356ca2efef1fdf51489a3f4d686c1ed171716e03216f27b6e5de3105155a82eafbc2ac8e2570b4f7e873e66fb451d2b66d8ce9ef6d19"
+    }
+  ],
+  "projects": [],
+  "tasks": [],
+  "sessions": {
+    "9a99b1944e0a98f19ab777b04636b8f1736bd6add204f0d401fef6f49a4ddbc7": {
+      "userId": "ADMIN",
+      "createdAt": 1791354504978
+    },
+    "dcc5238de87a18491bab6b528c1751d2ec3d4aa00e6d03ee42a80d207138160d": {
+      "userId": "PM01",
+      "createdAt": 1791354522151
+    },
+    "2bc3dd3c34a4dabb414a2eea6a4f989074ee1824c41e42743a76f1da1e270b79": {
+      "userId": "ADMIN",
+      "createdAt": 1791354637268
+    },
+    "74a0b50af2dbe37ab5d8c279a9960b9b5dc021154b30212c8512845da58c0dd0": {
+      "userId": "ADMIN",
+      "createdAt": 1791355054119
+    },
+    "f4311e5ea1c72b7e657818e8573079d90eba9f9a4e3b8618000931fce9f13072": {
+      "userId": "PM01",
+      "createdAt": 1791355064713
+    },
+    "5561679092fa5ee85e9a31059bbd7d0f3345249fd772f8a4b98423d934d797f8": {
+      "userId": "DEV01",
+      "createdAt": 1791355073636
+    },
+    "022037de6dd6cb7e13482eb6c31d6436f3b68bafe50219b6675f12562bfc0866": {
+      "userId": "DEV02",
+      "createdAt": 1791355081019
+    },
+    "a40d97f28447d07d93ee646362f01130f0ebbb2ae81f19fa85b46992ea8ae381": {
+      "userId": "ADMIN",
+      "createdAt": 1791355088627
+    },
+    "d4072eb9e23326a1e8d9cebe7f6f3ca314b7520c2ed2aa1c6e63a31b4aa592a3": {
+      "userId": "ADMIN",
+      "createdAt": 1791355118744
+    },
+    "f2f915a8bc33f0d377c3ce409e9e12ad6b75dc811559b1a88b5d662e95a78f66": {
+      "userId": "ADMIN",
+      "createdAt": 1791355129100
+    }
+  }
+}
