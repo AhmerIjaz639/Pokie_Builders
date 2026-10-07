@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # NovaWorks AI Project Manager
 
 **Meeting-to-Execution Project Management System**  
@@ -287,3 +288,7 @@ Use the Admin reset/seed controls in the navigation, or stop the server and make
 ## Security note
 
 Keep API keys and local `.env` files private. Do not commit secrets, production credentials, or personal data to the repository.
+=======
+# Pokie_Builders
+infinity wave Hackathone 
+>>>>>>> 7b088834afb2e96d5fc1aa12fbba1c7e7ea367fc
